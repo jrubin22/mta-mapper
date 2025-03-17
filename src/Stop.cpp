@@ -5,7 +5,8 @@
 Stop::Stop(const std::string& stationId, const std::string& trainLine, const std::vector<char>& directions):
      stationId(stationId),
      trainLine(trainLine), 
-     directions(directions) 
+     directions(directions),
+     Reg() 
     {
         for (char dir : directions)
         {
@@ -59,7 +60,17 @@ std::string Stop::getStationId() const
     return stationId;
 }
 
+std::string Stop::getStationName()
+{
+    return Reg.getStopName(stationId);
+}
+
 std::string Stop::getTrainLine() const 
 {
     return trainLine;
+}
+
+std::map<char, std::vector<int>> Stop::getArrivalTimes()
+{
+    return arrivalTimes;
 }

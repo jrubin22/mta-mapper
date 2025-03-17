@@ -6,7 +6,7 @@ add_executable(mta-mapper
     apilink.cpp
     subwayApiLink.cpp 
     profile.cpp 
-    display.cpp
+    Display.cpp
     Stop.cpp
     gtfs-realtime-NYCT.pb.cc
     gtfs-realtime.pb.cc

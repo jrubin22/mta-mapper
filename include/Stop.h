@@ -5,6 +5,7 @@
 #include <vector>
 #include <mutex>
 #include <map>
+#include "stopRegistry.h"
 #define MAXSTOPS 4
 
 
@@ -16,7 +17,9 @@ public:
     void printInfo() const;
 
     std::string getStationId() const;
+    std::string getStationName();
     std::string getTrainLine() const;
+    std::map<char, std::vector<int>> getArrivalTimes();
 
 private:
     std::string stationId;
@@ -26,6 +29,7 @@ private:
 
     // Store arrival times per direction (e.g., {'N': [5, 10, 15], 'S': [3, 8, 12]})
     std::map<char, std::vector<int>> arrivalTimes;
+    StopRegistry Reg;
 
     void trimArrivals(char direction);
 

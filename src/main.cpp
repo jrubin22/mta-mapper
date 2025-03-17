@@ -1,8 +1,10 @@
 #include "subwayApiLink.h"
 #include "profile.h"
+#include "Display.h"
 #include <cstdlib>
 #include <iostream>
 #include <csignal>
+#include <cstring>
 #include <chrono>
 #include <thread>
 
@@ -20,16 +22,23 @@ int main() {
     std::signal(SIGINT, signalHandler);
     std::signal(SIGTERM, signalHandler);
 
+
     const char* env_path = std::getenv("MTA_MAPPER_CONFIG_PATH");
+    char configPath[256];
+    strcpy(configPath,env_path);
+    strcat(configPath, "config.yaml" );
     if (!env_path)
     {
         std::cerr << "Error: MTA_MAPPER_CONFIG_PATH is not set!" << std::endl;
         return 1;
     }
+    std::cout << "env2: " << std::getenv("MTA_MAPPER_CONFIG_PATH") << std::endl;
+
 
     
-    std::string config_path(env_path);
+    std::string config_path(configPath);
     Profile profile(config_path);
+    Display display;
     std::map<std::string, std::shared_ptr<Stop>> stops;
 
 
@@ -44,12 +53,9 @@ int main() {
             std::cout << dir << " ";
         }
         std::cout << std::endl << std::endl;
+        //Create Stops for each station in the profile
         stops[config.station_id] = std::make_shared<Stop>(config.station_id, config.train_line, config.directions);
 
-    }
-    // Create Stop objects for each station in the profile
-    for (const auto& config : profile.getConfigs()) 
-    {
     }
  
     // Replace with your actual API key and MTA feed URL
@@ -58,9 +64,6 @@ int main() {
     try {
         // Initialize API connection
         SubwayApiLink subwayApi(feedUrl, stops);
-
-        // Initialize Display Object
-        //Display display();
 
         std::cout << "[INFO] Starting MTA Subway Tracker...\n";
 
@@ -74,7 +77,8 @@ int main() {
             // Proof of concept print from stops
             for (const auto& stop : stops)
             {
-                stop.second->printInfo();
+                display.update(stop.second);
+                //stop.second->printInfo();
             } 
 
             // Wait 10 seconds before next update
