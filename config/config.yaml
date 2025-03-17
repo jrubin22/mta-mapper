@@ -1,0 +1,9 @@
+---
+subway_monitors:
+  - train_line: "6"
+    station_id: "623"
+    directions: ["S", "N"]
+
+  - train_line: "7"
+    station_id: "723"
+    directions: ["S"]

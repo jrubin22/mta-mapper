@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+# Set the environment variable for the YAML config path
+export MTA_MAPPER_CONFIG_PATH="@CMAKE_SOURCE_DIR@/config/config.yaml"
+
+# Path to the binary
+BUILD_BINARY_PATH="@CMAKE_BINARY_DIR@/src/mta-mapper"
+
+# Run the compiled binary
+$BUILD_BINARY_PATH
