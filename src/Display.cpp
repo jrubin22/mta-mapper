@@ -12,10 +12,14 @@ void Display::update(std::shared_ptr<Stop> stop)
     {
         std::cout << "  Direction " << direction << ":";
 
-        if (times.empty()) {
+        if (times.empty()) 
+        {
             std::cout << " No upcoming trains" << std::endl;
-        } else {
-            for (int time : times) {
+        } 
+        else 
+        {
+            for (int time : times) 
+            {
                 std::cout << " " << time << " min";
             }
             std::cout << std::endl;

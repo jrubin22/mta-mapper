@@ -12,12 +12,14 @@
 volatile std::sig_atomic_t keepRunning = 1;
 
 // Signal handler for SIGINT (Ctrl+C) and SIGTERM
-void signalHandler(int signal) {
+void signalHandler(int signal) 
+{
     std::cout << "\n[INFO] Caught signal " << signal << ", exiting...\n";
     keepRunning = 0;
 }
 
-int main() {
+int main() 
+{
     // Register signal handlers
     std::signal(SIGINT, signalHandler);
     std::signal(SIGTERM, signalHandler);
@@ -32,9 +34,6 @@ int main() {
         std::cerr << "Error: MTA_MAPPER_CONFIG_PATH is not set!" << std::endl;
         return 1;
     }
-    std::cout << "env2: " << std::getenv("MTA_MAPPER_CONFIG_PATH") << std::endl;
-
-
     
     std::string config_path(configPath);
     Profile profile(config_path);
@@ -61,14 +60,16 @@ int main() {
     // Replace with your actual API key and MTA feed URL
     std::string feedUrl = "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs";
 
-    try {
+    try 
+    {
         // Initialize API connection
         SubwayApiLink subwayApi(feedUrl, stops);
 
         std::cout << "[INFO] Starting MTA Subway Tracker...\n";
 
         // Run loop (fetches data every 10 seconds)
-        while (keepRunning) {
+        while (keepRunning) 
+        {
             std::cout << "[INFO] Fetching train data...\n";
 
             // Get train data from MTA API
@@ -85,7 +86,9 @@ int main() {
             std::this_thread::sleep_for(std::chrono::seconds(10));
         }
 
-    } catch (const std::exception& e) {
+    } 
+    catch (const std::exception& e) 
+    {
         std::cerr << "[ERROR] Exception: " << e.what() << "\n";
         return EXIT_FAILURE;
     }

@@ -61,7 +61,8 @@ std::string ApiLink::makeRequest()
 
         // Function to capture the response body
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, 
-                         +[](void* ptr, size_t size, size_t nmemb, std::string* data) -> size_t {
+                         +[](void* ptr, size_t size, size_t nmemb, std::string* data) -> size_t 
+                         {
                              data->append(static_cast<char*>(ptr), size * nmemb);
                              return size * nmemb;
                          });
