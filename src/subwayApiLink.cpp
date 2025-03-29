@@ -44,11 +44,14 @@ void SubwayApiLink::parseResponse(const std::string& response, Profile& profile)
                                 if (direction == dir && stop_time.has_arrival()) 
                                 {
                                     std::time_t arrivalTime = stop_time.arrival().time();
-                                    int minutesFromNow = (arrivalTime - currentTime) / 60;
-
-                                    if (stops.count(config.station_id)) 
+                                    if ( arrivalTime > currentTime)
                                     {
-                                        stops[config.station_id]->updateArrivalTime(direction, minutesFromNow);
+                                        int minutesFromNow = floor((arrivalTime - currentTime) / 60);
+                                        if (stops.count(config.station_id)) 
+                                        {
+                                            std::cout << "TripID: " << stops[config.station_id]->trip_id << std::endl;
+                                            stops[config.station_id]->updateArrivalTime(direction, minutesFromNow);
+                                        }
                                     }
                                 }
                             }
