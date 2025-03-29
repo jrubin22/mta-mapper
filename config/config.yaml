@@ -1,4 +1,7 @@
 ---
+
+subway_url_1: "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs"
+
 subway_monitors:
   - train_line: "6"
     station_id: "623"
@@ -6,4 +9,24 @@ subway_monitors:
 
   - train_line: "7"
     station_id: "723"
-    directions: ["S"]
+    directions: ["S","S"]
+
+  - train_line: "1"
+    station_id: "227"
+    directions: ["S","N"]
+
+  - train_line: "3"
+    station_id: "227"
+    directions: ["S","N"]
+
+  - train_line: "2"
+    station_id: "227"
+    directions: ["S","N"]
+
+  - train_line: "4"
+    station_id: "626"
+    directions: ["S","N"]
+
+  - train_line: "5"
+    station_id: "626"
+    directions: ["S","N"]
