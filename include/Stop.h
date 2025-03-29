@@ -6,7 +6,7 @@
 #include <mutex>
 #include <map>
 #include "stopRegistry.h"
-#define MAXSTOPS 4
+#define MAXSTOPS 2
 
 
 class Stop {

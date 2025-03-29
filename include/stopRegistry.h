@@ -34,6 +34,7 @@ private:
         const char* env_path = std::getenv("MTA_MAPPER_CONFIG_PATH");
         char stopsPath[256];
         strcpy(stopsPath,env_path);
+        strcat(stopsPath,"gtfs_subway/");
         strcat(stopsPath, "stops.txt" );
         if (!env_path)
         {
@@ -48,12 +49,14 @@ private:
         }
 
         std::string line;
-        while (std::getline(file, line)) {
+        while (std::getline(file, line)) 
+        {
             std::stringstream ss(line);
             std::string stop_id, stop_name;
             
             // Read the stop_id and stop_name from each line
-            if (std::getline(ss, stop_id, ',') && std::getline(ss, stop_name, ',')) {
+            if (std::getline(ss, stop_id, ',') && std::getline(ss, stop_name, ',')) 
+            {
                 stop_map[stop_id] = stop_name;
             }
         }
