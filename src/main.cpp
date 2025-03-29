@@ -80,6 +80,8 @@ int main()
             {
                 display.update(stop.second);
                 //stop.second->printInfo();
+                std::this_thread::sleep_for(std::chrono::seconds(4));
+
             } 
 
             // Wait 10 seconds before next update
